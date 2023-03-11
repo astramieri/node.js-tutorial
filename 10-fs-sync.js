@@ -9,7 +9,7 @@ const second = readFileSync("./content/second.txt", "utf8");
 console.log(first, second);
 
 writeFileSync(
-  "./content/third.txt",
+  "./content/third-sync.txt",
   `Here is the result: ${first}, ${second}`,
   { flag: "a" } // append option
 );
