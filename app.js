@@ -1,20 +1,27 @@
-const http = require('http');
+// official site: https://www.npmjs.com/
+// npm = node package manager
+// npm --version
+// npm --v 
 
-const server = http.createServer((req, res) => {
-    //console.log(req);
-    if (req.url === '/') {
-        res.end("Welcome to the home page!");
-    } else if (req.url === '/about') {
-        res.end("Welcome to the about page!");
-    } else {
-        res.end(`
-        <h1>Oops!</h1>
-        <p>We cannot find the page you are looking for</p>
-        <a href="/">back home</a>`);
-    }
+// install locally inside particular project
+// npm install <package>
+// npm i <package>
 
-    //res.write("Welcome to the home page!");
-    //res.end();
-});
+// install globally for every project
+// npm install -g <package>
 
-server.listen(3000);
+// initialize a package
+// package.json manifest file
+// npm init (step by step, enter to skip)
+
+// semantic version
+// 1.0.0  (major.minor.patch)
+
+// Love this explanation
+// https://stackoverflow.com/questions/38006384/why-the-name-underscore-or-lodash
+
+const _ = require('lodash');n
+
+const items = [1, [2, [3, [4]]]];
+const newItems = _.flattenDeep(items);
+console.log(newItems);

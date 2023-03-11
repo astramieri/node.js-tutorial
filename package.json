@@ -1,0 +1,19 @@
+{
+  "name": "node.js-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01-intro.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astramieri/node.js-tutorial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/astramieri/node.js-tutorial/issues"
+  },
+  "homepage": "https://github.com/astramieri/node.js-tutorial#readme"
+}
