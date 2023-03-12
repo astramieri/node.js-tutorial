@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/astramieri/node.js-tutorial/issues"
   },
-  "homepage": "https://github.com/astramieri/node.js-tutorial#readme"
+  "homepage": "https://github.com/astramieri/node.js-tutorial#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
