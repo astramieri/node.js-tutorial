@@ -5,6 +5,6 @@ console.log("first task");
 
 setTimeout(() => {
     console.log("timeout task");
-}, 5000);
+}, 2000); // two seconds
 
 console.log("final task")
