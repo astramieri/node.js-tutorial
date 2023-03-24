@@ -4,8 +4,9 @@ const server = http.createServer(
   // this callback is invoked everytime the user hits our server
   (req, res) => {
     console.log("user hit the server");
-
-    res.end("home page"); // must be called on each respond
+    res.writeHead(200, {'content-type' : 'text/plain'});
+    res.write("<h1>okay<h1>");
+    res.end(); // must be called on each respond
   }
 );
 
