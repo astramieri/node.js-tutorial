@@ -11,7 +11,13 @@ app.get("/api/products", (req, res) => {
     const { id, name, price } = product;
     return { id, name, price };
   });
-  res.send(products);
+  res.json(products);
+});
+
+app.get("/api/products/1", (req, res) => {
+  const singleProduct = data.products.find((product) => product.id === 1);
+  
+  res.json(singleProduct);
 });
 
 app.listen(3000, () => {
