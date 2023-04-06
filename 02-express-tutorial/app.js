@@ -1,8 +1,10 @@
 const express = require("express");
+const data = require("./data.js");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.json([{ name: "Peter" }, { name: "John" }]);
+  //res.json([{ name: "Peter" }, { name: "John" }]);
+  res.json(data.people);
 });
 
 app.listen(3000, () => {
