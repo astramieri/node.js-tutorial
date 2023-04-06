@@ -1,10 +1,17 @@
 const express = require("express");
-const data = require("./data.js");
+const data = require("./resource/data.js");
 const app = express();
 
 app.get("/", (req, res) => {
-  //res.json([{ name: "Peter" }, { name: "John" }]);
-  res.json(data.people);
+  res.send('<h1>Home page</h1><a href="/api/products">products</a>');
+});
+
+app.get("/api/products", (req, res) => {
+  const products = data.products.map((product) => {
+    const { id, name, price } = product;
+    return { id, name, price };
+  });
+  res.send(products);
 });
 
 app.listen(3000, () => {
