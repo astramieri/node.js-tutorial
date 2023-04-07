@@ -14,11 +14,25 @@ app.get("/api/products", (req, res) => {
   res.json(products);
 });
 
-app.get("/api/products/1", (req, res) => {
-  const singleProduct = data.products.find((product) => product.id === 1);
-  
-  res.json(singleProduct);
+// route parameter
+app.get("/api/products/:productID", (req, res) => {
+  console.log(req.params); // warn: productID is a string!
+  const { productID } = req.params;
+  const singleProduct = data.products.find(
+    (product) => product.id === Number(productID)
+  );
+  if (singleProduct) {
+    res.json(singleProduct);
+  } else {
+    res.status(404).send("Product does not exist");
+  }
 });
+
+app.get("/api/products/:productID/reviews/:reviewID", (req, res) => {
+  console.log(req.params); // { productID: '2', reviewID: '1' }
+  res.json(req.params);
+});
+
 
 app.listen(3000, () => {
   console.log("Listening on port 3000 ...");
