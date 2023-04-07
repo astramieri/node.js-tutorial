@@ -28,6 +28,7 @@ app.get("/api/products/:productID", (req, res) => {
   }
 });
 
+// warn: if you specify "review" instead of "reviews" you get 404 because "review" is not a route param
 app.get("/api/products/:productID/reviews/:reviewID", (req, res) => {
   console.log(req.params); // { productID: '2', reviewID: '1' }
   res.json(req.params);
