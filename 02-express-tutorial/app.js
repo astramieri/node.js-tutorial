@@ -34,6 +34,23 @@ app.get("/api/products/:productID/reviews/:reviewID", (req, res) => {
   res.json(req.params);
 });
 
+// warn: if you specify "review" instead of "reviews" you get 404 because "review" is not a route param
+app.get("/api/v1/query", (req, res) => {
+  //console.log(req.query);
+  const { search, limit } = req.query;
+  let sortedProducts = [...data.products];
+
+  if (search) {
+    sortedProducts = sortedProducts.filter((product) => {
+      return product.name.startsWith(search);
+    });
+  }
+
+  if (limit) {
+    sortedProducts = sortedProducts.slice(0, Number(limit));
+  }
+  res.status(200).json(sortedProducts);
+});
 
 app.listen(3000, () => {
   console.log("Listening on port 3000 ...");
