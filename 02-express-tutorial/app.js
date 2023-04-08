@@ -1,25 +1,28 @@
 const express = require("express");
 const app = express();
+const logger = require("./logger");
 
 // request => middleware => response
 
-const logger = (req, res, next) => {
-  const method = req.method;
-  const url = req.url;
-  const time = new Date().getFullYear();
-  console.log(method, url, time);
-  // WARNING: 
-  // you must pass it on to the next middleware
-  // unless you are terminating the whole cycle (res.send)
-  next(); 
-};
+// WARN: app.use invokes logger function fon any route
+// WARN: the order is important (here will be used for every GET)
+//app.use(logger); // every path
+app.use('/api', logger); // every path AFTER /api
 
-app.get("/", logger, (req, res) => {
+app.get("/", (req, res) => {
   res.send("Home page");
 });
 
-app.get("/about", logger, (req, res) => {
+app.get("/about", (req, res) => {
   res.send("About page");
+});
+
+app.get("/api/products", (req, res) => {
+  res.send("Products page");
+});
+
+app.get("/api/items", (req, res) => {
+  res.send("Items page");
 });
 
 app.listen(3000, () => {
