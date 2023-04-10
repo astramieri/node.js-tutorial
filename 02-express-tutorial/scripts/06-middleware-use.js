@@ -16,7 +16,7 @@ const authorize = require("./authorize");
 //app.use(logger); // every path
 //app.use('/api', logger); // every path AFTER /api
 //app.use([authorize, logger]); //multiple use: executed in this order
-app.use(morgan("common"));
+app.use(morgan("tiny"));
 
 app.get("/", (req, res) => {
   res.send("Home page");
