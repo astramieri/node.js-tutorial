@@ -6,6 +6,7 @@ const logger = (req, res, next) => {
   // WARNING:
   // you must pass it on to the next middleware
   // unless you are terminating the whole cycle (res.send)
+  console.log(req.user);
   next();
 };
 
