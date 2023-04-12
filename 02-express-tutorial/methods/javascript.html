@@ -1,9 +1,42 @@
 <html>
   <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="./style.css">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h1>Javascript Form</h1>
+    <main>
+      <form>
+        <h3>Javascript form</h3>
+        <label for="firstname">first name</label>
+        <input type="text" name="firstname" id="firstname" />
+        <button type="submit">submit</button>
+      </form>
+      <div id="result"></div>
+    </main>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"
+      integrity="sha512-nnNHpffPSgINrsR8ZAIgFUIMexORL5tPwsfktOTxVYSv+AUAILuFYWES8IHl+hhIhpFGlKvWFiz9ZEusrPcSBQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      const result = document.querySelector("#result");
+
+      const fetchPeople = async () => {
+        try {
+          const { data } = await axios.get("/api/people");
+
+          const people = data.data.map((person) => {
+            return `<h5>${person.name}</5>`;
+          });
+
+          result.html = people.join("");
+        } catch (error) {
+          result.innerHTML = `<div class="alert">error: ${error}</div>`;
+        }
+      };
+
+      fetchPeople();
+    </script>
   </body>
 </html>

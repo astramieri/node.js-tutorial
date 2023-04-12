@@ -1,3 +1,7 @@
 form {
+    color: black;
+}
+
+div.alert {
     color: red;
 }
