@@ -8,7 +8,7 @@ app.use(express.static("./methods"));
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/api/people", (req, res) => {
-  res.status(200).json(data.people);
+  res.status(200).json({ success: true, data: data.people });
 });
 
 app.post("/login", (req, res) => {
