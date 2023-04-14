@@ -9,9 +9,10 @@
         <h3>Javascript form</h3>
         <label for="firstname">first name</label>
         <input type="text" name="firstname" id="firstname" />
-        <button type="submit">submit</button>
+        <button type="submit" id="submit-button">submit</button>
       </form>
       <div id="result"></div>
+      <div id="alert"></div>
     </main>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"
@@ -38,6 +39,34 @@
       };
 
       fetchPeople();
+
+      let buttonElement = document.querySelector("#submit-button");
+      let inputElement = document.querySelector("#firstname");
+      let alertElement = document.querySelector("#alert");
+
+      buttonElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        let fistnameValue = inputElement.value;
+
+        console.log(`Firstname: ${fistnameValue}`);
+
+        try {
+          const { data } = await axios.post("/api/people", { name: fistnameValue });
+
+          console.log(data);
+
+          const h5Element = document.createElement("h5");
+
+          h5Element.textContent = data.person;
+
+          result.appendChild(h5Element);
+        } catch (error) {
+          alertElement.textContent = error.response.data.msg;
+        }
+
+        inputElement.value = "";
+      });
     </script>
   </body>
 </html>

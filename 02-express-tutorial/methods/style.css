@@ -1,7 +1,12 @@
 form {
-    color: black;
+  color: black;
 }
 
-div.alert {
-    color: red;
+div#alert {
+  color: red;
+}
+
+div#result h5 {
+  display: inline-block;
+  padding-left: 10px;
 }

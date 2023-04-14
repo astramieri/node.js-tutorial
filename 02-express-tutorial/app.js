@@ -6,13 +6,27 @@ let data = require("./resource/data");
 app.use(express.static("./methods"));
 // parse data (this is crucial in order to get data)
 app.use(express.urlencoded({ extended: false }));
+// parse json data
+app.use(express.json());
 
 app.get("/api/people", (req, res) => {
   res.status(200).json({ success: true, data: data.people });
 });
 
+app.post("/api/people", (req, res) => {
+  // WARN: app.use(express.json()) IS REQUIRED!!!
+  const { name } = req.body; // de-structuring
+  if (!name) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "please provide name value" });
+  }
+  res.status(201).json({ success: true, person: name });
+});
+
 app.post("/login", (req, res) => {
   console.log(req.body);
+  // WARN: app.use(express.urlencoded()) IS REQUIRED!!!
   const { firstname } = req.body; // de-structuring
   if (firstname) {
     return res.status(200).send(`Welcome ${firstname}`);
