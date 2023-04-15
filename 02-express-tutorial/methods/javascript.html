@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <nav>
+      <a href="./index.html">Index</a>
+    </nav>
     <main>
       <form>
         <h3>Javascript form</h3>
@@ -62,7 +65,7 @@
 
           result.appendChild(h5Element);
         } catch (error) {
-          alertElement.textContent = error.response.data.msg;
+          alertElement.textContent = error.response.data.message;
         }
 
         inputElement.value = "";
