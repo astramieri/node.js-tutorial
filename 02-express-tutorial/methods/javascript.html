@@ -55,7 +55,7 @@
         console.log(`Firstname: ${fistnameValue}`);
 
         try {
-          const { data } = await axios.post("/api/people", { name: fistnameValue });
+          const { data } = await axios.post("/api/people", { "name": fistnameValue });
 
           console.log(data);
 
