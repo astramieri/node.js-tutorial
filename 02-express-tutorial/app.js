@@ -55,6 +55,28 @@ app.put("/api/people/:id", (req, res) => {
   res.status(200).json({ success: true, data: newPeople });
 });
 
+app.delete("/api/people/:id", (req, res) => {
+  const { id } = req.params; // WARN: it's a string! You need to cast!
+
+  const person = data.people.find((person) => {
+    return person.id === Number(id); // WARN: return clause!
+  });
+
+  if (!person) {
+    return res
+      .status(400)
+      .json({ success: false, message: `no person with ID ${id}` });
+  }
+
+  const newPeople = data.people.filter((person) => {
+    if (person.id !== Number(id)) {
+      return person;
+    }
+  });
+
+  res.status(200).json({ success: true, data: newPeople });
+});
+
 // app.get("/login", (req, res) => {
 //   console.log(req.body);
 //   // WARN: app.use(express.urlencoded()) IS REQUIRED!!!
