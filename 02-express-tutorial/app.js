@@ -25,11 +25,34 @@ app.post("/api/people", (req, res) => {
 });
 
 app.put("/api/people/:id", (req, res) => {
-  const {id} = req.params;
-  const {name} = req.body;
-  const {age} = req.body;
+  const { id } = req.params; // WARN: it's a string! You need to cast!
+  const { name } = req.body;
+  const { age } = req.body;
   console.log(id, name, age);
-  res.send("Hello World");
+
+  //const person = data.people.find((person) => person.id === Number(id)); // LAMBDA SYNTAX
+
+  // OPTION 2:
+  const person = data.people.find((person) => {
+    return person.id === Number(id); // WARN: return clause!
+  });
+
+  if (!person) {
+    return res
+      .status(400)
+      .json({ success: false, message: `no person with ID ${id}` });
+  }
+
+  const newPeople = data.people.map((person) => {
+    if (person.id === Number(id)) {
+      person.name = name;
+      person.age = age;
+    }
+
+    return person;
+  });
+
+  res.status(200).json({ success: true, data: newPeople });
 });
 
 // app.get("/login", (req, res) => {
