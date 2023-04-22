@@ -6,21 +6,62 @@
 	},
 	"item": [
 		{
-			"name": "/api/people",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "/api/people",
+			"name": "api/auth",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Angelo\"\r\n}",
+					"raw": "{\r\n    \"firstname\" : \"Angelo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/people",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/people",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"people"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/people",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Angelo\",\r\n    \"age\": 40\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -43,13 +84,13 @@
 			"response": []
 		},
 		{
-			"name": "/api/people",
+			"name": "api/people",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Little John\",\r\n    \"age\": 40\r\n}",
+					"raw": "{\r\n    \"name\": \"Angelo S.\",\r\n    \"age\": 41\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +112,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "4"
 						}
 					]
 				}
@@ -79,7 +120,7 @@
 			"response": []
 		},
 		{
-			"name": "/api/people",
+			"name": "api/people",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -98,7 +139,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "6"
+							"value": "4"
 						}
 					]
 				}
