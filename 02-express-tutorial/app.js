@@ -9,6 +9,16 @@ app.use(express.urlencoded({ extended: false }));
 // parse json data
 app.use(express.json());
 
+app.get("/login", (req, res) => {
+  console.log(req.body);
+  // WARN: app.use(express.urlencoded()) IS REQUIRED!!!
+  const { firstname } = req.body; // de-structuring
+  if (firstname) {
+    return res.status(200).send(`Welcome ${firstname}`);
+  }
+  res.status(401).send("Please provide credentials");
+});
+
 app.get("/api/people", (req, res) => {
   res.status(200).json({ success: true, data: data.people });
 });
@@ -21,7 +31,8 @@ app.post("/api/people", (req, res) => {
       .status(400)
       .json({ success: false, message: "please provide name value" });
   }
-  res.status(201).json({ success: true, person: name });
+  data.people = [...data.people, req.body];
+  res.status(201).json({ success: true, data: data.people });
 });
 
 app.put("/api/people/:id", (req, res) => {
@@ -76,16 +87,6 @@ app.delete("/api/people/:id", (req, res) => {
 
   res.status(200).json({ success: true, data: newPeople });
 });
-
-// app.get("/login", (req, res) => {
-//   console.log(req.body);
-//   // WARN: app.use(express.urlencoded()) IS REQUIRED!!!
-//   const { firstname } = req.body; // de-structuring
-//   if (firstname) {
-//     return res.status(200).send(`Welcome ${firstname}`);
-//   }
-//   res.status(401).send("Please provide credentials");
-// });
 
 app.listen(3000, () => {
   console.log("Listening on port 3000 ...");
